@@ -1231,7 +1231,7 @@ class Rocket(tile: RocketTile)(implicit p: Parameters) extends CoreModule()(p)
     }
   }
   else {
-    when (csr.io.trace(0).valid) {
+    when (csr.io.trace(0).valid && PlusArg("enable-trace", default = 0, "0:Disabled 1:Enabled.")(0)) {
       printf("C%d: %d [%d] pc=[%x] W[r%d=%x][%d] R[r%d=%x] R[r%d=%x] inst=[%x] DASM(%x)\n",
          io.hartid, coreMonitorBundle.timer, coreMonitorBundle.valid,
          coreMonitorBundle.pc,
